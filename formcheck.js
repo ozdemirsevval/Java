@@ -66,6 +66,7 @@ function tabEvent(e)
 function elemanlariBastir()
 {
     var liste = document.getElementById("myForm").children;
+    var test = docıment.get
     //console.log(liste);
     var myDiv = document.getElementById("container");
     console.log(myDiv);
