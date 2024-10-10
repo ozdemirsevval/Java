@@ -38,33 +38,73 @@
 
 </head>
 <body>
-    <button type="button" id="btn" class="btnoyna">Oyna</button>
-    <div style="clear:both"></div>
+  <div class="row">
+    <div class="col">
+         <button type="button" id="btn" class="btnoyna">Oyna</button>
+    </div>
+    <div class="col">
+        <p class="text-danger" id="sayilar"></p>
+        <p class="text-danger" id="secilenler"></p>
+
+    </div>
+</div>
+  
+<div style="clear:both"></div>
 
 
 <script>
     $(document).ready(function(){
+      var secilenler=[];
+      var secimsayisi=0;
+      $("#btn").hide();
       for (let index = 1; index <= 50; index++) {
         $(`<div class='top' id='mydiv${index}'>`)
         .appendTo($("body"))
         .html(index); 
       }
-      
+      $('.top').click(function(e){
+        //console.log(e.currentTarget.id);
+        secimsayisi++;
+        if (secimsayisi<=6) {
+          $(this).css('background-color','yellow')
+          secilenler.push(e.currentTarget.id);
+        }
+        else if(secimsayisi==6)
+        {
+          $(this).css('background-color','yellow')
+          secilenler.push(e.currentTarget.id);
+          $('#btn').show();
+        }
+        else
+        {
+          alert()
+        }
+      })
         $('#btn').click(function(){
          $('.top').css('background-color','rgb(59,184,233,1)')
           var toplar=[];
           var sayac=0,sayi;
+          $('#sayilar').val('');
           
         while(sayac<6)
         {
           sayi=Math.floor(Math.random()*50)+1;
           toplar.push(sayi);
-          $('#sayilar').val($('#sayilar')).val()
+          //$('#sayilar').val($('#sayilar').val()+'-' +sayi);
           sayac++;
         }
-
+        $('#sayilar').text(toplar);
+         
+        for (let i = 0; i < secilenler.length; i++) {
+          for (let j = 0; j < toplar.length; j++) {
+            if (secilenler[i]===toplar[j]) {
+              (toplar[j].css('background','red'))
+            }
+            
+          }      
+        }
         for (let i = 0; i < toplar.length; i++) {
-          let divId = '#mydiv' +toplar[i]
+          let divId =toplar[i]
           console.log(divId);
           $(divId).css('background-color','yellow')         
         }
